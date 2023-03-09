@@ -1,37 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Guess the Number Game</title>
-  </head>
-  <body>
-    <h1>Guess the Number Game</h1>
+<head>
+  <title>Guess the Number Game</title>
+  <style>
+    body {
+      background-color: #0077b6;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      font-family: Arial, sans-serif;
+      font-size: 48px;
+      color: #1d3557;
+      text-shadow: 2px 2px #a8dadc;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 50px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    input[type=number] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 24px;
+      margin-right: 10px;
+      width: 100px;
+      color: #1d3557;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 24px;
+      background-color: #000;
+      color: #a8dadc;
+      cursor: pointer;
+      text-shadow: 2px 2px #1d3557;
+    }
+
+    button:hover {
+      background-color: #1d3557;
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #1d3557;
+      text-shadow: 2px 2px #a8dadc;
+    }
+
+    .success {
+      color: green;
+      font-size: 24px;
+      text-shadow: 2px 2px #7A994C;
+    }
+
+    .error {
+      color: red;
+      font-size: 24px;
+      text-shadow: 2px 2px #994C4C;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guess the Number Game</h1>
+  <div class="container">
     <p>Guess a number between 1 and 10:</p>
-    <input type="number" id="guessInput" />
+    <input type="number" id="guessInput">
     <button onclick="checkGuess()">Submit</button>
     <p id="result"></p>
+  </div>
 
-    <script>
-      // Generate a random number between 1 and 10
-      var randomNumber = Math.floor(Math.random() * 10) + 1;
+  <script>
+    // Generate a random number between 1 and 10
+    var randomNumber = Math.floor(Math.random() * 10) + 1;
 
-      function checkGuess() {
-        // Get the user's guess from the input field
-        var guess = document.getElementById('guessInput').value;
+    function checkGuess() {
+      // Get the user's guess from the input field
+      var guess = document.getElementById("guessInput").value;
 
-        // Convert the guess to an integer
-        guess = parseInt(guess);
+      // Convert the guess to an integer
+      guess = parseInt(guess);
 
-        // Check if the guess is correct
-        if (guess === randomNumber) {
-          document.getElementById('result').innerHTML =
-            'You guessed it! The number was ' + randomNumber + '.';
-        } else {
-          document.getElementById('result').innerHTML =
-            "Sorry, that's not the right number.It was: " +
-            randomNumber +
-            ' Try again.';
-        }
+      // Check if the guess is correct
+      if (guess === randomNumber) {
+        document.getElementById("result").innerHTML = "You guessed it! The number was " + randomNumber + ".";
+        document.getElementById("result").className = "success";
+      } else {
+        var message = guess > randomNumber ? "Too high" : "Too low";
+        document.getElementById("result").innerHTML = message;
+        document.getElementById("result").className = "error";
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
 </html>
